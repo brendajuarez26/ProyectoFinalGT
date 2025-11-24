@@ -148,7 +148,7 @@ const inputStyle = {
   padding: "10px",
   borderRadius: "17px",
   border: "1px solid #ffffffff",
-  backgroundColor: rgb(216, 236, 255),
+  backgroundColor: white,
   color: "black",
   outline: "none",
 };
