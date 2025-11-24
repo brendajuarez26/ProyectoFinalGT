@@ -5,7 +5,7 @@ export default function ListaPrestamos() {
   const [prestamos, setPrestamos] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/prestamos")
+    fetch("")
       .then(res => res.json())
       .then(data => setPrestamos(data));
   }, []);

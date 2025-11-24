@@ -12,14 +12,14 @@ const cursos = [
 ];
 
 const PrestamoSchema = Yup.object().shape({
-  nombre: Yup.string().required("Requerido"),
-  apellido: Yup.string().required("Requerido"),
-  curso: Yup.string().required("Requerido"),
-  registra: Yup.string().required("Requerido"),
-  insumo: Yup.string().required("Requerido"),
-  cantidad: Yup.number().required("Requerido").positive(),
-  fechaRetiro: Yup.date().required("Requerido"),
-  fechaDevolucion: Yup.date().required("Requerido")
+  nombre: Yup.string().required("Ingrese un nombre*"),
+  apellido: Yup.string().required("Ingrese un apellido*"),
+  curso: Yup.string().required("Seleccione un Curso y División*"),
+  registra: Yup.string().required("Este campo es obligatorio*"),
+  insumo: Yup.string().required("Este campo es obligatorio*"),
+  cantidad: Yup.number().required("Este campo es obligatorio*").positive(),
+  fechaRetiro: Yup.date().required("Este campo es obligatorio*"),
+  fechaDevolucion: Yup.date().required("Este campo es obligatorio*")
 });
 
 export default function NuevoPrestamo() {
@@ -31,10 +31,10 @@ export default function NuevoPrestamo() {
         fontFamily: "Arial, sans-serif",
       }}
     >
-      <h2 style={{ textAlign: "left", marginBottom: "20px", color: "#19115aff" }}>
+      <h2 style={{ textAlign: "left", marginBottom: "20px", color: "#19115aff", fontSize: "34px" }}>
         Registrar Préstamo del Pañol
       </h2>
-      <p>Ingresa los datos del aulmno como corresponda</p>
+      <p style={{fontSize: "16px", paddingBottom: "20px"}}>Asegurate de ingresar correctamente el curso, los insumos y las fechas para que el préstamo quede cargado sin problemas. Gracias por mantener el pañol organizado.</p>
 
       <Formik
         initialValues={{
@@ -52,9 +52,9 @@ export default function NuevoPrestamo() {
       >
         <Form
           style={{
-            maxWidth: "500px",
+            maxWidth: "400px",
             margin: "0 auto",
-            backgroundColor: "#0e2742ff",
+            backgroundColor: "#9dc3ebff",
             padding: "25px",
             borderRadius: "12px",
             boxShadow: "0 0 15px rgba(58, 63, 65, 0.2)",
@@ -64,7 +64,7 @@ export default function NuevoPrestamo() {
           }}
         >
     
-          <label>Nombre</label>
+          <label style={label}>Nombre</label>
           <Field
             name="nombre"
             style={inputStyle}
@@ -72,7 +72,7 @@ export default function NuevoPrestamo() {
           />
           <ErrorMessage name="nombre" component="div" style={errorStyle} />
 
-          <label>Apellido</label>
+          <label style={label}>Apellido</label>
           <Field
             name="apellido"
             style={inputStyle}
@@ -80,7 +80,7 @@ export default function NuevoPrestamo() {
           />
           <ErrorMessage name="apellido" component="div" style={errorStyle} />
 
-          <label>Curso y División</label>
+          <label style={label}>Curso y División</label>
           <Field as="select" name="curso" style={inputStyle}>
             <option value="">Seleccionar...</option>
             {cursos.map((c) => (
@@ -89,7 +89,7 @@ export default function NuevoPrestamo() {
           </Field>
           <ErrorMessage name="curso" component="div" style={errorStyle} />
 
-          <label>Quién registra el préstamo</label>
+          <label style={label}>Quién registra el préstamo</label>
           <Field
             name="registra"
             style={inputStyle}
@@ -97,7 +97,7 @@ export default function NuevoPrestamo() {
           />
           <ErrorMessage name="registra" component="div" style={errorStyle} />
 
-          <label>Insumo</label>
+          <label style={label}>Insumo</label>
           <Field
             name="insumo"
             style={inputStyle}
@@ -105,7 +105,7 @@ export default function NuevoPrestamo() {
           />
           <ErrorMessage name="insumo" component="div" style={errorStyle} />
 
-          <label>Cantidad</label>
+          <label style={label}>Cantidad</label>
           <Field
             type="number"
             name="cantidad"
@@ -114,18 +114,18 @@ export default function NuevoPrestamo() {
           />
           <ErrorMessage name="cantidad" component="div" style={errorStyle} />
 
-          <label>Fecha de retiro</label>
+          <label style={label}>Fecha de retiro</label>
           <Field type="date" name="fechaRetiro" style={inputStyle} />
           <ErrorMessage name="fechaRetiro" component="div" style={errorStyle} />
 
-          <label>Fecha de devolución</label>
+          <label style={label}>Fecha de devolución</label>
           <Field type="date" name="fechaDevolucion" style={inputStyle} />
           <ErrorMessage name="fechaDevolucion" component="div" style={errorStyle} />
 
           <button
             type="submit"
             style={{
-              backgroundColor: "#092a3fff",
+              backgroundColor: "#0d3046ff",
               border: "none",
               textTransform: "uppercase",
               padding: "12px",
@@ -148,12 +148,19 @@ const inputStyle = {
   padding: "10px",
   borderRadius: "17px",
   border: "1px solid #ffffffff",
-  backgroundColor: white,
+  backgroundColor: "white",
   color: "black",
   outline: "none",
+  fontStyle: "italic",
 };
 
 const errorStyle = {
   color: "#ca1212ff",
-  fontSize: "12px",
+  fontSize: "16px",
 };
+
+const label = {
+    color: "black",
+    fontFamily: "arial",
+    fontSize: "16px",
+}
