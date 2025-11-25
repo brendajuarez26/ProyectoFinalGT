@@ -1,0 +1,17 @@
+.lista-prestamos-container {
+  width: 400px;
+  margin: 40px auto 0 auto;
+}
+
+.titulo-lista {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #19115a;
+  text-align: center;
+}
+
+.no-prestamos {
+  font-size: 16px;
+  color: #555;
+  text-align: center;
+}

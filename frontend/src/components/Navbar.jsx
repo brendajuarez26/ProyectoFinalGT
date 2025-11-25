@@ -8,6 +8,7 @@ export default function Navbar() {
         <Link to="/" style={links}>Inicio</Link>
         <Link to="/nuevo" style={links}>Nuevo Préstamo</Link>
         <Link to="/prestamos" style={links}>Préstamos</Link>
+        <Link to="/stock" style={links}>Stock</Link>
       </div>
     </nav>
   );

@@ -1,0 +1,27 @@
+.prestamo-card {
+  background-color: #f0f4f8;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.prestamo-card h3.prestamo-nombre {
+  margin: 0 0 10px 0;
+  color: #0d3046;
+}
+
+.prestamo-card p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.prestamo-card strong {
+  color: #0d3046;
+}
+
+.insumo {
+  font-weight: bold;
+  color: #ca1212; 
+}

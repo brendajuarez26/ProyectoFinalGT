@@ -1,22 +1,16 @@
+import React from "react";
+import "../styles/PrestamoCard.css";
+
 export default function PrestamoCard({ prestamo }) {
   return (
-    <div style={styles.card}>
-      <h3>{prestamo.elemento}</h3>
-      <p><strong>Alumno:</strong> {prestamo.nombre}</p>
+    <div className="prestamo-card">
+      <h3 className="prestamo-nombre">{prestamo.nombre} {prestamo.apellido}</h3>
       <p><strong>Curso:</strong> {prestamo.curso}</p>
+      <p><strong>Registrado por:</strong> {prestamo.registra}</p>
+      <p><strong>Insumo prestado:</strong> <span className="insumo">{prestamo.insumo}</span></p>
       <p><strong>Cantidad:</strong> {prestamo.cantidad}</p>
-      <p><strong>Retiro:</strong> {prestamo.fechaRetiro}</p>
-      <p><strong>Devolución:</strong> {prestamo.fechaDevolucion}</p>
+      <p><strong>Fecha de retiro:</strong> {prestamo.fechaRetiro}</p>
+      <p><strong>Fecha de devolución:</strong> {prestamo.fechaDevolucion}</p>
     </div>
   );
 }
-
-const styles = {
-  card: {
-    padding: "15px",
-    border: "1px solid #ccc",
-    borderRadius: "8px",
-    marginBottom: "10px",
-    background: "#f9f9f9",
-  },
-};
