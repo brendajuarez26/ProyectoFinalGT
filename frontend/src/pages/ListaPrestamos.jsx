@@ -5,9 +5,9 @@ export default function ListaPrestamos() {
   const [prestamos, setPrestamos] = useState([]);
 
   useEffect(() => {
-    fetch("")
-      .then(res => res.json())
-      .then(data => setPrestamos(data));
+    // Leer préstamos desde localStorage
+    const guardados = JSON.parse(localStorage.getItem("prestamos")) || [];
+    setPrestamos(guardados);
   }, []);
 
   return (
@@ -17,9 +17,7 @@ export default function ListaPrestamos() {
       {prestamos.length === 0 ? (
         <p>No hay préstamos.</p>
       ) : (
-        prestamos.map(p => (
-          <PrestamoCard key={p.id} prestamo={p} />
-        ))
+        prestamos.map((p) => <PrestamoCard key={p.id} prestamo={p} />)
       )}
     </div>
   );

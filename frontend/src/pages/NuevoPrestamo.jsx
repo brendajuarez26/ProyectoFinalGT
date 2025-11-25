@@ -34,7 +34,9 @@ export default function NuevoPrestamo() {
       <h2 style={{ textAlign: "left", marginBottom: "20px", color: "#19115aff", fontSize: "34px" }}>
         Registrar Préstamo del Pañol
       </h2>
-      <p style={{fontSize: "16px", paddingBottom: "20px"}}>Asegurate de ingresar correctamente el curso, los insumos y las fechas para que el préstamo quede cargado sin problemas. Gracias por mantener el pañol organizado.</p>
+      <p style={{fontSize: "16px", paddingBottom: "20px"}}>
+        Asegurate de ingresar correctamente el curso, los insumos y las fechas para que el préstamo quede cargado sin problemas. Gracias por mantener el pañol organizado.
+      </p>
 
       <Formik
         initialValues={{
@@ -48,7 +50,22 @@ export default function NuevoPrestamo() {
           fechaDevolucion: ""
         }}
         validationSchema={PrestamoSchema}
-        onSubmit={(values) => console.log(values)}
+        onSubmit={(values, { resetForm }) => {
+          // 1️⃣ Obtener préstamos existentes
+          const prestamosGuardados = JSON.parse(localStorage.getItem("prestamos")) || [];
+
+          // 2️⃣ Agregar un id único
+          const nuevoPrestamo = { ...values, id: Date.now() };
+
+          // 3️⃣ Guardar en localStorage
+          localStorage.setItem("prestamos", JSON.stringify([...prestamosGuardados, nuevoPrestamo]));
+
+          // 4️⃣ Limpiar el formulario
+          resetForm();
+
+          // 5️⃣ Mensaje de éxito opcional
+          alert("Préstamo guardado correctamente!");
+        }}
       >
         <Form
           style={{
@@ -65,53 +82,30 @@ export default function NuevoPrestamo() {
         >
     
           <label style={label}>Nombre</label>
-          <Field
-            name="nombre"
-            style={inputStyle}
-            placeholder="Ingrese el nombre"
-          />
+          <Field name="nombre" style={inputStyle} placeholder="Ingrese el nombre" />
           <ErrorMessage name="nombre" component="div" style={errorStyle} />
 
           <label style={label}>Apellido</label>
-          <Field
-            name="apellido"
-            style={inputStyle}
-            placeholder="Ingrese el apellido"
-          />
+          <Field name="apellido" style={inputStyle} placeholder="Ingrese el apellido" />
           <ErrorMessage name="apellido" component="div" style={errorStyle} />
 
           <label style={label}>Curso y División</label>
           <Field as="select" name="curso" style={inputStyle}>
             <option value="">Seleccionar...</option>
-            {cursos.map((c) => (
-              <option key={c} value={c}>{c}</option>
-            ))}
+            {cursos.map((c) => <option key={c} value={c}>{c}</option>)}
           </Field>
           <ErrorMessage name="curso" component="div" style={errorStyle} />
 
           <label style={label}>Quién registra el préstamo</label>
-          <Field
-            name="registra"
-            style={inputStyle}
-            placeholder="PEP / Preceptor / Profesor"
-          />
+          <Field name="registra" style={inputStyle} placeholder="PEP / Preceptor / Profesor" />
           <ErrorMessage name="registra" component="div" style={errorStyle} />
 
           <label style={label}>Insumo</label>
-          <Field
-            name="insumo"
-            style={inputStyle}
-            placeholder="Ej: Regla, calculadora, etc."
-          />
+          <Field name="insumo" style={inputStyle} placeholder="Ej: Regla, calculadora, etc." />
           <ErrorMessage name="insumo" component="div" style={errorStyle} />
 
           <label style={label}>Cantidad</label>
-          <Field
-            type="number"
-            name="cantidad"
-            style={inputStyle}
-            placeholder="Ej: 1, 2, 3..."
-          />
+          <Field type="number" name="cantidad" style={inputStyle} placeholder="Ej: 1, 2, 3..." />
           <ErrorMessage name="cantidad" component="div" style={errorStyle} />
 
           <label style={label}>Fecha de retiro</label>
@@ -163,4 +157,4 @@ const label = {
     color: "black",
     fontFamily: "arial",
     fontSize: "16px",
-}
+};
